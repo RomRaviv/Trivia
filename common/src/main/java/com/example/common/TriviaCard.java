@@ -7,93 +7,108 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TriviaCard {
 
-    private View cardView;
-    private TextView questionTextView;
-    private RadioGroup answerRadioGroup;
-    private RadioButton answer1RadioButton;
-    private RadioButton answer2RadioButton;
-    private RadioButton answer3RadioButton;
-    private RadioButton answer4RadioButton;
-    private ImageView imageView;
 
-    public TriviaCard(View cardView) {
-        this.cardView = cardView;
-        questionTextView = cardView.findViewById(R.id.question_textview);
-        answerRadioGroup = cardView.findViewById(R.id.answer_radiogroup);
-        answer1RadioButton = cardView.findViewById(R.id.answer1_radiobutton);
-        answer2RadioButton = cardView.findViewById(R.id.answer2_radiobutton);
-        answer3RadioButton = cardView.findViewById(R.id.answer3_radiobutton);
-        answer4RadioButton = cardView.findViewById(R.id.answer4_radiobutton);
-        imageView = cardView.findViewById(R.id.card_image);
+    private String question;
+    private List<String> answerChoices;
+    private int correctAnswerIndex;
+    private String imageUrl;
+    private String selectedAnswer;
+    private boolean isAnswered;
+    private int selectedAnswerIndex;
+    private String correctAnswer;
+    private CardListener cardListener;
 
+
+    public TriviaCard(String question, List<String> answerChoices, String correctAnswer, @Nullable String imageUrl) {
+        this.question = question;
+        this.answerChoices = answerChoices;
+        this.correctAnswer = correctAnswer;
+        this.imageUrl = imageUrl;
+        selectedAnswer = "";
     }
 
-    public void setQuestion(String question) {
-        questionTextView.setText(question);
+    public String getQuestion() {
+        return question;
     }
 
-    public void setAnswerChoices(String[] answerChoices) {
-        answer1RadioButton.setText(answerChoices[0]);
-        answer2RadioButton.setText(answerChoices[1]);
-        answer3RadioButton.setText(answerChoices[2]);
-        answer4RadioButton.setText(answerChoices[3]);
+    public List<String> getAnswerChoices() {
+        return answerChoices;
+    }
+
+    public int getCorrectAnswerIndex() {
+        return correctAnswerIndex;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public boolean isAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
+    }
+
+    public String getSelectedAnswer() {
+        return selectedAnswer;
     }
 
     public int getSelectedAnswerIndex() {
-        int selectedRadioButtonId = answerRadioGroup.getCheckedRadioButtonId();
-        if (selectedRadioButtonId == R.id.answer1_radiobutton) {
-            return 0;
-        } else if (selectedRadioButtonId == R.id.answer2_radiobutton) {
-            return 1;
-        } else if (selectedRadioButtonId == R.id.answer3_radiobutton) {
-            return 2;
-        } else if (selectedRadioButtonId == R.id.answer4_radiobutton) {
-            return 3;
-        }
-        return -1;
+        return selectedAnswerIndex;
     }
 
-    public void setSelectedAnswerIndex(int answerIndex) {
-        switch (answerIndex) {
-            case 0:
-                answer1RadioButton.setChecked(true);
-                break;
-            case 1:
-                answer2RadioButton.setChecked(true);
-                break;
-            case 2:
-                answer3RadioButton.setChecked(true);
-                break;
-            case 3:
-                answer4RadioButton.setChecked(true);
-                break;
-        }
+
+    public void setSelectedAnswerIndex(int selectedAnswerIndex) {
+        this.selectedAnswerIndex = selectedAnswerIndex;
     }
 
-    public void disableAnswerChoices() {
-        answer1RadioButton.setEnabled(false);
-        answer2RadioButton.setEnabled(false);
-        answer3RadioButton.setEnabled(false);
-        answer4RadioButton.setEnabled(false);
+    public void setCardListener(CardListener cardListener){
+        this.cardListener = cardListener;
     }
 
-    public void enableAnswerChoices() {
-        answer1RadioButton.setEnabled(true);
-        answer2RadioButton.setEnabled(true);
-        answer3RadioButton.setEnabled(true);
-        answer4RadioButton.setEnabled(true);
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
-    public void setImage(Context context, String imageUrl) {
-        Glide.with(context)
-                .load(imageUrl)
-                .into(imageView);
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setAnswerChoices(List<String> answerChoices) {
+        this.answerChoices = answerChoices;
+    }
+
+    public void setCorrectAnswerIndex(int correctAnswerIndex) {
+        this.correctAnswerIndex = correctAnswerIndex;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setSelectedAnswer(String selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
+    public CardListener getCardListener() {
+        return cardListener;
+    }
 }
 
 
