@@ -1,59 +1,74 @@
 <!-- card_view.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card_linear_layout"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#00BCD4"
-    android:padding="16dp">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/question_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="25dp"
+        android:textStyle="bold"/>
 
-    <ImageView
-        android:id="@+id/card_image"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"/>
-
-    <RadioGroup
-        android:id="@+id/answer_radiogroup"
+    <LinearLayout
+        android:id="@+id/card_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_below="@+id/question_textview"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <RadioButton
-            android:id="@+id/answer1_radiobutton"
+
+
+        <ImageView
+            android:id="@+id/card_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop" />
+
+        <RadioGroup
+            android:id="@+id/answer_radiogroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/answer2_radiobutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            <RadioButton
+                android:id="@+id/answer1_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <RadioButton
-            android:id="@+id/answer3_radiobutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            <RadioButton
+                android:id="@+id/answer2_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-        <RadioButton
-            android:id="@+id/answer4_radiobutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            <RadioButton
+                android:id="@+id/answer3_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/answer4_radiobutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/black"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-</LinearLayout>
+        </RadioGroup>
+
+    </LinearLayout>
+</RelativeLayout>

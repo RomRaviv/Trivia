@@ -20,13 +20,11 @@ import java.util.List;
 public class TriviaCardAdapter extends RecyclerView.Adapter<TriviaCardAdapter.TriviaViewHolder> {
 
     private List<TriviaCard> triviaCards;
-    private OnAnswerSelectedListener onAnswerSelectedListener;
     private RecyclerView recyclerView;
 
 
-    public TriviaCardAdapter(List<TriviaCard> triviaCards, RecyclerView recyclerView, OnAnswerSelectedListener onAnswerSelectedListener) {
+    public TriviaCardAdapter(List<TriviaCard> triviaCards, RecyclerView recyclerView) {
         this.triviaCards = triviaCards;
-        this.onAnswerSelectedListener = onAnswerSelectedListener;
         this.recyclerView = recyclerView;
 
     }
@@ -40,7 +38,7 @@ public class TriviaCardAdapter extends RecyclerView.Adapter<TriviaCardAdapter.Tr
     @Override
     public TriviaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new TriviaViewHolder(view, onAnswerSelectedListener);
+        return new TriviaViewHolder(view);
     }
 
     @Override
@@ -66,12 +64,10 @@ public class TriviaCardAdapter extends RecyclerView.Adapter<TriviaCardAdapter.Tr
         private RadioButton answer4RadioButton;
         private ImageView imageView;
         private RadioGroup answerRadioGroup;
-        private OnAnswerSelectedListener onAnswerSelectedListener;
         private TriviaCard triviaCard;
 
-        public TriviaViewHolder(@NonNull View itemView, OnAnswerSelectedListener onAnswerSelectedListener) {
+        public TriviaViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.onAnswerSelectedListener = onAnswerSelectedListener;
 
             // init views
             questionTextView = itemView.findViewById(R.id.question_textview);
@@ -126,8 +122,6 @@ public class TriviaCardAdapter extends RecyclerView.Adapter<TriviaCardAdapter.Tr
                 triviaCard.setAnswered(true);
                 triviaCard.setSelectedAnswer(selectedRadioButton.getText().toString());
 
-                // notify the listener
-                onAnswerSelectedListener.onAnswerSelected(getAdapterPosition(), selectedAnswerIndex);
             }
         }
     }

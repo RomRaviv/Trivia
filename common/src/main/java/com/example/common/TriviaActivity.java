@@ -59,15 +59,14 @@ public abstract class TriviaActivity extends AppCompatActivity {
             triviaCards.add(triviaCard);
         }
         Collections.shuffle(triviaCards);
-        TriviaCardAdapter adapter = new TriviaCardAdapter(triviaCards,recyclerView, (position, selectedAnswerIndex) -> {
-        });
+        TriviaCardAdapter adapter = new TriviaCardAdapter(triviaCards,recyclerView);
         recyclerView.setAdapter(adapter);
 
 
         // Set up the next button
         Button nextButton = findViewById(R.id.btn_next);
         nextButton.setOnClickListener(v -> {
-            Boolean swipe =  onNextButtonClicked(adapter.getCurrentCard());
+            boolean swipe =  onNextButtonClicked(adapter.getCurrentCard());
             if(swipe) {
                 int nextPosition = (adapter.getCurrentCard() + 1) % triviaCards.size();
                 recyclerView.smoothScrollToPosition(nextPosition);
@@ -87,5 +86,5 @@ public abstract class TriviaActivity extends AppCompatActivity {
 
     protected abstract ArrayList<String> getAnswerChoices(int index);
 
-    protected abstract Boolean onNextButtonClicked(int index);
+    protected abstract boolean onNextButtonClicked(int index);
 }
